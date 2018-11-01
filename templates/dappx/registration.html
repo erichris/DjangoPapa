@@ -1,0 +1,32 @@
+{% extends "dappx/base.html" %}
+{% load staticfiles %}
+{% block body_block %}
+  <div class="container">
+    <div class="jumbotron">
+      {% if registered %}
+        <h1>Gracias por registrarte!</h1>
+      {% else %}
+        <h1>Registrate</h1>
+		<form  enctype="multipart/form-data" method="POST">
+          {% csrf_token %}
+          {{ user_form.as_p }}
+          {{ profile_form.as_p }}
+          Nombre
+          <input id="nombre" type="text" name="nombre" value="yopli"></br>
+          Tarjeta
+          <input id="tarjeta" type="text" name="tarjeta" value="4242424242424242"></br>
+          CVC
+          <input id="cvc" type="text" name="CVC" value="123"></br>
+          Mes
+          <input id="mes" type="text" name="Mes" value="12"></br>
+          Ano
+          <input id="ano" type="text" name="ANO" value="2020"></br>
+          <button type="button" onclick="setCard();Mytokenize()">Click Me!</button>
+          <input type="submit" name="" value="Register" onclick="setCard();Mytokenize()">
+          <script>console.log(document.getElementById("id_username").value);</script>
+        </form>
+
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Base</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script type="text/javascript" src="https://cdn.conekta.io/js/latest/conekta.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+	Conekta.setPublicKey("key_PGNZygzDiWRYAs9zcR2M3fg");
+	
+	Conekta.setLanguage("es");
+	
+	var tokenParams = {
+			  "card": {
+			    "number": "",
+			    "name": "",
+			    "exp_year": "",
+			    "exp_month": "",
+			    "cvc": ""
+		  		}
+	};
+	
+	var successResponseHandler = function(token) {
+		// Do something on sucess
+		console.log(token);
+		let csrftoken = $('input[name="csrfmiddlewaretoken"]').val();
+		let username = document.getElementById("id_username").value;
+		let password = document.getElementById("id_password").value;
+		let email = document.getElementById("id_email").value;
+		let name = document.getElementById("nombre").value;
+		let phone = document.getElementById("id_phone").value;
+		console.log(username);
+		// you need to send the token to the backend.
+		$.ajax({
+			url: '/dappx/register/user/', 
+			method: 'POST',
+			data: {
+				'token': token,
+				'csrfmiddlewaretoken': csrftoken,
+				'username': username,
+				'password': password,
+				'email': email,
+				'name': name,
+				'phone': phone
+			}, success: function(response){
+				if(response.rc == 0){
+					console.log("save");
+				}else{
+					alert(response.msg)
+				}
+			}
+			
+		})
+	};
+	
+	var errorResponseHandler = function(error) {
+		console.log("Error");
+	};
+	
+	function setCard(){
+		tokenParams["card"]["number"] = document.getElementById('tarjeta').value;
+		tokenParams["card"]["name"] = document.getElementById('nombre').value;
+		tokenParams["card"]["year"] = document.getElementById('ano').value;
+		tokenParams["card"]["month"] = document.getElementById('mes').value;
+		tokenParams["card"]["cvc"] = document.getElementById('cvc').value;
+		console.log("asd");
+	}
+	
+	function Mytokenize(){
+		Conekta.Token.create(tokenParams, successResponseHandler, errorResponseHandler);
+		
+	}
+	
+	console.log(Conekta.card.validateNumber(tokenParams["card"]["number"]));
+	console.log(Conekta.card.validateExpirationDate(tokenParams["card"]["exp_month"], tokenParams["card"]["exp_year"]));
+	console.log(Conekta.card.validateCVC(tokenParams["card"]["cvc"])); 
+	//Mytokenize();
+	
+	/*
+	
+	var objectData =
+    {
+        Username: document.getElementById('userid').value,
+        Password: document.getElementById('password').value                
+    };
+
+	var objectDataString = JSON.stringify(objectData);
+	
+	$.ajax({
+       type: "POST",
+       url: "your url with method that accpects the data",
+       dataType: "json",
+       data: {
+           o: objectDataString
+       },
+       success: function (data) {
+          alert('Success');
+
+       },
+       error: function () {
+        alert('Error');
+       }
+   });
+	*/
+	console.log(123);
+	//Conekta.Token.create(tokenParams, successResponseHandler, errorResponseHandler);
+	</script>
+</head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <ul class="nav navbar-nav">
+{# Django Home Link / Admin Link / Register Link#}
+          <li><a class="navbar-brand" href="{% url 'index' %}">Home</a></li>
+          <li><a class="navbar-link" href="{% url 'dappx:register' %}">Registrarse</a></li>
+          {# Some logic on what to display for last item#}
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+            <li><a class="navbar-link" href="{% url 'dappx:user_login' %}">Login</a></li>
+          {% endif %}
+</ul>
+      </div>
+    </nav>
+    <div class="container">
+    {% block body_block %}
+    {% endblock %}
+    </div>
+  </body>
+</html>
