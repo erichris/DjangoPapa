@@ -78,22 +78,22 @@ WSGI_APPLICATION = 'lapapa4real.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'lapapa', #LaPapa
-        'USER': 'hakapapa', #postgres
-        'PASSWORD': 'Lapapa2019', #Nomorelove12
-        'HOST': 'localhost', #localhost
-        'PORT': '5432', #5432
-    }
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'LaPapa', #LaPapa
-#         'USER': 'postgres', #postgres
-#         'PASSWORD': 'Nomorelove12', #Nomorelove12
+#         'NAME': 'lapapa', #LaPapa
+#         'USER': 'hakapapa', #postgres
+#         'PASSWORD': 'Lapapa2019', #Nomorelove12
 #         'HOST': 'localhost', #localhost
 #         'PORT': '5432', #5432
 #     }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'LaPapa', #LaPapa
+        'USER': 'postgres', #postgres
+        'PASSWORD': 'Nomorelove12', #Nomorelove12
+        'HOST': 'localhost', #localhost
+        'PORT': '5432', #5432
+    }
 }
 
 
