@@ -80,9 +80,9 @@ WSGI_APPLICATION = 'lapapa4real.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'LaPapa', #LaPapa
-        'USER': 'postgres', #postgres
-        'PASSWORD': 'Nomorelove12', #Nomorelove12
+        'NAME': 'lapapa', #LaPapa
+        'USER': 'hakapapa', #postgres
+        'PASSWORD': 'Lapapa2019', #Nomorelove12
         'HOST': 'localhost', #localhost
         'PORT': '5432', #5432
     }
@@ -130,3 +130,5 @@ STATICFILES_DIRS = [STATIC_DIR,]
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 LOGIN_URL = '/dappx/user_login/'
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
