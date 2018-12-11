@@ -86,14 +86,14 @@ DATABASES = {
         'HOST': 'localhost', #localhost
         'PORT': '5432', #5432
     }
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'LaPapa', #LaPapa
-#         'USER': 'postgres', #postgres
-#         'PASSWORD': 'Nomorelove12', #Nomorelove12
-#         'HOST': 'localhost', #localhost
-#         'PORT': '5432', #5432
-#     }
+    # 'default': {
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'LaPapa', #LaPapa
+        # 'USER': 'postgres', #postgres
+        # 'PASSWORD': 'Nomorelove12', #Nomorelove12
+        # 'HOST': 'localhost', #localhost
+        # 'PORT': '5432', #5432
+    # }
 }
 
 
